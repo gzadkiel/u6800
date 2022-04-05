@@ -1,6 +1,5 @@
 RAMStart        equ $0080
 ROMStart        equ $F600
-;Config11        equ $00F1
 VectorStart     equ $FFF8
 
 table1_beg      equ $F800
