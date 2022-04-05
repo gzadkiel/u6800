@@ -34,10 +34,10 @@ Inicio
 	sta RESHH	
 	ldhx #AL1
 	sthx RESLH
-    lda #BH1
-    sta BHH
-    ldhx #BL1
-    sthx BLH
+    	lda #BH1
+    	sta BHH
+    	ldhx #BL1
+    	sthx BLH
 	;;substract least significant byte 
 	lda RESLL 
 	sta sumando1
@@ -64,10 +64,10 @@ Inicio
 	lda resultado
 	sta RESHH
 	;;divide by 2 
-    asr RESHH
-    ror RESLH
-    ror RESLL
-    bra fin
+    	asr RESHH
+    	ror RESLH
+    	ror RESLL
+    	bra fin
 
 SUMA 
 	
@@ -77,14 +77,14 @@ SUMA
 	rts 
 
 fin 
-		bra fin
+	bra fin
 
 Vacio
 
-	 	rti
-		org  Vectores  
+	rti
+	org  Vectores  
 
-    dw   Vacio     
-    dw   Vacio
-    dw   Vacio            
-    dw   Inicio          
+    	dw   Vacio     
+    	dw   Vacio
+    	dw   Vacio            
+    	dw   Inicio          
