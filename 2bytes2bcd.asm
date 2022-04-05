@@ -43,45 +43,45 @@ Inicio
 mloop 			;main loop 
 			ldhx #!10000	
 			sthx sustrah		;set subtrahend to 10000
-			jsr resta 		;substraction subroutine 
+			jsr resta 		;subtraction subroutine 
 			bcs revert10k 		;if borrow = 1, branch
 			lda diezk
 			inca 
 			sta diezk		;if borrow = 0, increase 10k counter
-			bra mloop		;return and substract 10000 again, max 6 times
+			bra mloop		;return and subtract 10000 again, max 6 times
 revert10k		ldhx #!10000 		;if borrow = 1, add 10000 back 
 			sthx sumah 
 			jsr suma		;addition subroutine
-			ldhx #!1000		;after subroutine, now it's time to substract 1000
+			ldhx #!1000		;after subroutine, now it's time to subtract 1000
 			sthx sustrah
 loop2			jsr resta 		
 			bcs revert1k		;if borrow = 1, branch 
 			lda unk
 			inca
 			sta unk			;if borrow = 0, increase 1k counter
-			bra loop2 		;return and substract 1000 again, max 5 times 
+			bra loop2 		;return and subtract 1000 again, max 5 times 
 revert1k		ldhx #!1000		
 			sthx sumah	
 			jsr suma		;if borrow = 1, add 1000 back 
-			ldhx #!100 		;time to substract 100 
+			ldhx #!100 		;time to subtract 100 
 			sthx sustrah
 loop3			jsr resta
 			bcs revert100 		;if borrow = 1, branch
 			lda cien
 			inca
 			sta cien		;if borrow = 0, increase 100 counter, max 5 times 
-			bra loop3 		;return and substract 100 again
+			bra loop3 		;return and subtract 100 again
 revert100		ldhx #!100		
 			sthx sumah
 			jsr suma 		;if borrow = 1, add 100 back
-			ldhx #!10		;time to substract 10
+			ldhx #!10		;time to subtract 10
 			sthx sustrah
 loop4			jsr resta
 			bcs revert10		;if borrow = 1, branch
 			lda diez
 			inca
 			sta diez		;if borrow = 0, increase 10 counter, max 3 times
-			bra loop4		;return and substract 100 again
+			bra loop4		;return and subtract 100 again
 revert10		ldhx #!10
 			sthx sumah
 			jsr suma		;if borrow = 1, add 100 back
@@ -115,10 +115,8 @@ Vacio
 	 	rti
 		org  VectorStart   
 
-        dw   Vacio              ;FFF8+FFF9, no usado
-        dw   Vacio              ;FFFA+FFFB, (direccion atencion interrupcion por IRQ)
-        dw   Vacio              ;FFFC+FFFD, (direccion atencion interrupcion por SWI)
-        dw   Inicio             ;FFFE+FFFF, (direccion comienzo del programa)		
+        	dw   Vacio              
+        	dw   Vacio              
+        	dw   Vacio              
+        	dw   Inicio             	
 		
-		
-	
