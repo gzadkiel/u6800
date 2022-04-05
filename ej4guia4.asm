@@ -64,7 +64,7 @@ Vacio
 	rti
 	org  Vectores  
 
-    dw   Vacio     
-    dw   Vacio
-    dw   Vacio            
-    dw   Inicio 
+    	dw   Vacio     
+    	dw   Vacio
+    	dw   Vacio            
+    	dw   Inicio 
