@@ -38,7 +38,7 @@ Inicio
     	sta BHH
     	ldhx #BL1
     	sthx BLH
-	;;substract least significant byte 
+	;;subtract least significant byte 
 	lda RESLL 
 	sta sumando1
 	lda BLL
@@ -47,7 +47,7 @@ Inicio
 	jsr SUMA
 	lda resultado
 	sta RESLL 
-	;;substract middle byte 
+	;;subtract middle byte 
 	lda RESLH 
 	sta sumando1
 	lda BLH
@@ -55,7 +55,7 @@ Inicio
 	jsr SUMA
 	lda resultado
 	sta RESLH
-	;;substract most significant byte
+	;;subtract most significant byte
 	lda RESHH 
 	sta sumando1
 	lda BHH
