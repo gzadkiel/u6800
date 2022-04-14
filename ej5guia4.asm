@@ -9,12 +9,12 @@ Vectores	equ $FFF8
 ;; memory addresses chained together 
 
 
-APT1	equ $AB45		;;2 msbs of A		
-APT2	equ $015F		;;2 mid bytes of A
-APT3	equ $A23D		;;2 lsbs of A
-BPT1	equ $01F1
-BPT2	equ $02F4
-BPT3	equ $AD45
+APT1	equ $0000		;;2 msbs of A		
+APT2	equ $0000		;;2 mid bytes of A
+APT3	equ $00FF		;;2 lsbs of A
+BPT1	equ $0000
+BPT2	equ $0000
+BPT3	equ $0002
 
 
 	org RAMStart
@@ -69,6 +69,7 @@ INICIO
 	sthx	B2H
 	ldhx	#BPT3
 	sthx	B3H 
+	clc
 	
 MLOOP 
 	
@@ -102,14 +103,15 @@ MLOOP
 	sta VALORH 
 	lda B1H
 	sta AUXH
-	jsr RESTA 
+	jsr RESTA
+	sthx RES1H 
 	blt REVERT 
-	sthx RES1H
 	jsr COCIENTE
 	bra MLOOP
 	
 REVERT 
 	
+	clc
 	lda RES3L
 	sta VALORL 
 	lda B3L
@@ -169,27 +171,25 @@ COCIENTE
 RESTA
 	
 	lda VALORL
-	sub	AUXL
+	sbc	AUXL
 	psha 
 	lda VALORH
 	sbc AUXH
 	psha 
-	tsx
-	pula
-	pula 
+	pulh
+	pulx 
 	rts 
 
 SUMA
 	
 	lda VALORL
-	add	AUXL
+	adc	AUXL
 	psha 
 	lda VALORH
 	adc AUXH
 	psha 
-	tsx
-	pula 
-	pula 
+	pulh 
+	pulx 
 	rts	
 	
 	
@@ -206,4 +206,4 @@ Vacio
     dw   Vacio     
     dw   Vacio
     dw   Vacio            
-    dw   Inicio          
+    dw   Inicio
