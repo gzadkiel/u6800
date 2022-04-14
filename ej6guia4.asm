@@ -1,9 +1,9 @@
-ROMStart	equ $F600
+ROMStart	equ $F60
 RAMStart	equ $0080
 Vectores	equ $FFF8
 
 
-num	equ $08
+num	equ $FF
 
 	org RAMStart
 
@@ -36,21 +36,25 @@ INICIO
 COMPLEMENTO 
 	
 	sta aux
-	neg aux 
+	neg aux
+	sta AUXL
+	neg AUXL
+	sta RESL
+	neg RESL
 	
 MLOOP 
-	
+
+	lda cont 
+	inca
+	cmpa aux
+	beq FIN 
+	sta cont 	
 	lda RESL 
 	sta VALORL 
 	lda RESH
 	sta VALORH 
 	jsr SUMA
 	sthx RESH 
-	lda cont 
-	inca
-	cmpa aux
-	beq FIN 
-	sta cont 
 	bra MLOOP
 	
 SUMA
@@ -61,9 +65,8 @@ SUMA
 	lda VALORH
 	adc AUXH
 	psha 
-	tsx
-	pula 
-	pula 
+	pulh
+	pulx
 	rts
 	
 FIN 
